@@ -1,1 +1,140 @@
 
+<ToDoCard>:
+    elevation: 2
+    md_bg_color: 1, 1, 1, 1
+    radius: [8]
+    size_hint_y: .1
+    MDFloatLayout:
+        id: bar
+        size_hint: .01, .9
+        pos_hint: {"center_x": .02, "center_y": .5}
+        md_bg_color: 1, 170/255, 23/255, 1
+    MDLabel:
+        id: task
+        text: root.title
+        markup: True
+        font_style: "Button"
+        font_size: "20sp"
+        size_hint_x: .8
+        pos_hint: {"center_x": .46, "center_y": .8}
+    MDCheckbox:
+        id: checkbox
+        size_hint: None, None
+        size: "48dp", "48dp"
+        unselected_color: 0, 179/255, 0, 1
+        selected_color: 1, 170/255, 23/255, 1
+        pos_hint: {"center_x": .95, "center_y": .8}
+        on_active: app.completed(*args, bar, 0)
+    MDLabel:
+        id: description
+        text: root.description
+        font_style: "Button"
+        markup: True
+        size_hint_x: .9
+        line_height: .8
+        pos_hint: {"center_x": .51, "center_y": .4}
+
+
+<ScrollParameters>:
+    #elevation: 2
+    md_bg_color: 1, 1, 1, 1
+    radius: [8]
+    size_hint_y: .1
+    MDRectangleFlatIconButton:
+        id: submit
+        text: 'Submit'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        on_press: app.hello()
+
+
+WindowManager:
+    MenuScreen:
+        id: MenuScreen
+    DoToScreen:
+        id: DoToScreen
+    NewFileScreen:
+        id: NewFileScreen
+
+<MenuScreen>:
+    name: "menu"
+    MDTextField:
+        id: data
+        name: 'username'
+        hint_text: "Enter username"
+        icon_right: "account"
+        icon_right_color: app.theme_cls.primary_color
+        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        size_hint_x:None
+        width:300
+    MDRectangleFlatIconButton:
+        id: submit
+        text: 'Submit'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        on_press: app.get_user()
+
+<DoToScreen>:
+    name: "DoTo"
+    todo_list: todo_list
+    orientation: "vertical"
+    MDFloatLayout:
+        MDLabel:
+            id: screenName
+            text: ""
+            theme_text_color: "Custom"
+            text_color: "orange"
+            pos_hint: {'center_x': .56,'center_y': .95}
+            font_style: "Button"
+            font_size: "20sp"
+            adaptive_height: True
+        MDIconButton:
+            icon: "plus"
+            pos_hint: {'center_x': 0.9, 'center_y': 0.95}
+            theme_icon_color: "Custom"
+            icon_color: "orange"
+            on_press:
+                app.root.current = "NewFile"
+        ScrollView:
+            do_scroll_x: False
+            size_hint_y: .85
+            pos_hint: {'center_x': .5, 'y': 0}
+            bar_width: 0
+            GridLayout:
+                id: todo_list
+                cols: 1
+                height: self.minimum_height
+                row_default_height: 80
+                size_hint_y: None
+                padding: 15, 10
+                spacing: 15, 10
+                        
+<NewFileScreen>:
+    name: "NewFile"
+    MDTextField:
+        id: title
+        name: 'title'
+        hint_text: "TITLE"
+        icon_right: "book"
+        icon_right_color: app.theme_cls.primary_color
+        pos_hint:{'center_x': 0.5, 'center_y': 0.7}
+        size_hint_x:None
+        width:300
+    MDTextField:
+        id: description
+        name: 'description'
+        hint_text: "DESCRIPTION"
+        icon_right: "pencil"
+        icon_right_color: app.theme_cls.primary_color
+        pos_hint:{'center_x': 0.5, 'center_y': 0.5}
+        multiline: True
+        size_hint_x:None
+        width:300
+    MDRectangleFlatIconButton:
+        text: 'Return'
+        pos_hint: {'center_x': 0.5, 'center_y': .1}
+        on_release: app.root.current = "DoTo"
+    MDRectangleFlatIconButton:
+        text: 'Submit'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+        on_press:
+            app.add_todo(title.text, description.text, 0)
+
