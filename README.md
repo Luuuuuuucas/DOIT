@@ -14,3 +14,8 @@ It allows users to organize their tasks and manage their daily workflow.
 - **Task List:** View and manage tasks in a convenient list format.
 - **Task Completion:** Mark tasks as completed to keep track of your progress.
 - **Data Persistence:** All task data is stored and can be retrieved even after restarting the application.
+
+### DOCUMENTATION
+-  [https://kivymd.readthedocs.io/en/latest/index.html](https://kivymd.readthedocs.io/en/latest/index.html) **(MAIN KIVYMD'S DOCUMENTATION)**
+-  [https://www.youtube.com/watch?v=dLgquj0c5_U&list=PLCC34OHNcOtpz7PJQ7Tv7hqFBP_xDDjqg](https://www.youtube.com/watch?v=dLgquj0c5_U&list=PLCC34OHNcOtpz7PJQ7Tv7hqFBP_xDDjqg) **(BASIC KIVY'S TUTORIAL)**
+-  [https://www.youtube.com/watch?v=EgG2RUxcA_k](https://www.youtube.com/watch?v=EgG2RUxcA_k) **(TODOLIST CARD SAMPLE)**
